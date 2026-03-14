@@ -1,0 +1,20 @@
+[package]
+name = "bare-async"
+version = "0.1.0"
+edition = "2021"
+authors = ["waspas66-del"]
+description = "High-performance manual state machines and a naked async executor for systems-level Rust. Designed for bare-metal, embedded, and safety-critical applications where zero-allocation and no-std are hard requirements."
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/waspas66-del/bare-async"
+categories = ["embedded", "no-std", "asynchronous"]
+keywords = ["async", "coroutine", "no-std", "performance"]
+
+[dependencies]
+# No dependencies - pure bare metal
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
