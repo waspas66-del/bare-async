@@ -15,9 +15,6 @@ pub enum StepResult<T> {
 }
 
 /// The core trait for manual, auditable coroutines.
-/// 
-/// Unlike standard Futures, RawCoroutine allows passing an explicit 
-/// context to every execution step.
 pub trait RawCoroutine {
     /// The value produced upon completion.
     type Output;
@@ -28,4 +25,31 @@ pub trait RawCoroutine {
     /// Advances the state machine one step.
     fn step(&mut self, cx: &mut Self::Context) -> StepResult<Self::Output>;
 }
-pub mod examples;
+
+// --- Example Implementation ---
+
+/// A simple timer coroutine that counts down steps.
+pub struct Delay {
+    ticks: u32,
+}
+
+impl Delay {
+    /// Creates a new delay with specified number of ticks.
+    pub const fn new(ticks: u32) -> Self {
+        Self { ticks }
+    }
+}
+
+impl RawCoroutine for Delay {
+    type Output = ();
+    type Context = (); // Context isn't needed for this simple timer
+
+    fn step(&mut self, _cx: &mut Self::Context) -> StepResult<Self::Output> {
+        if self.ticks > 0 {
+            self.ticks -= 1;
+            StepResult::Pending
+        } else {
+            StepResult::Ready(())
+        }
+    }
+}
