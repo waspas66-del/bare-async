@@ -36,3 +36,11 @@ block_on(timer, ());
 
 Philosophy
 We believe that high-performance concurrency should be transparent. Bare-Async doesn't hide the state machine behind compiler magic—it gives you the tools to build it, audit it, and run it with maximum efficiency and zero hidden costs.
+
+## Support the Mission
+
+If this library saved your hardware from bloating or your brain from exploding, feel free to fuel the next update. No pressure, just keeping the gears greased:
+
+* **TRC20:** `TXuVtJ4KU8CDVGrx7fH6K3vcQarA4EpgzF` — for Tron fans who like their coffee strong.
+* **BEP20:** `0x2dd5129b53816e7e4156bfb3c93e2293491f1e65` — Binance lovers, you know the drill!
+* **SOL:** `BD9rLoT1jg3FBa3GUtwMeUxbztSwXogZqQLe2AsR9Nba` — Solana speed for your espresso fix.
