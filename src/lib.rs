@@ -53,3 +53,21 @@ impl RawCoroutine for Delay {
         }
     }
 }
+// --- Naked Executor ---
+
+/// A minimal blocking executor that drives a coroutine to completion.
+/// This is a "naked" executor: no heap, no wakers, just pure polling.
+pub fn block_on<C>(mut coroutine: C, mut cx: C::Context) -> C::Output 
+where 
+    C: RawCoroutine 
+{
+    loop {
+        match coroutine.step(&mut cx) {
+            StepResult::Ready(out) => return out,
+            StepResult::Pending => {
+                // В реальном железе здесь может быть команда 'wfi' (wait for interrupt)
+                // чтобы процессор не молотил впустую и экономил заряд.
+            }
+        }
+    }
+}
