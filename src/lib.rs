@@ -28,3 +28,4 @@ pub trait RawCoroutine {
     /// Advances the state machine one step.
     fn step(&mut self, cx: &mut Self::Context) -> StepResult<Self::Output>;
 }
+pub mod examples;
