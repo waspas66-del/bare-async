@@ -53,6 +53,7 @@ impl RawCoroutine for Delay {
         }
     }
 }
+
 // --- Naked Executor ---
 
 /// A minimal blocking executor that drives a coroutine to completion.
@@ -65,8 +66,8 @@ where
         match coroutine.step(&mut cx) {
             StepResult::Ready(out) => return out,
             StepResult::Pending => {
-                // В реальном железе здесь может быть команда 'wfi' (wait for interrupt)
-                // чтобы процессор не молотил впустую и экономил заряд.
+                // In real hardware, a 'wfi' (Wait For Interrupt) instruction 
+                // could be placed here to save power while idling.
             }
         }
     }
